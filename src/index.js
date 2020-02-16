@@ -1,11 +1,14 @@
 import $ from 'jquery';
-import Store from './core/store';
-import PhotoView from './views/photo';
+import State from './views/state';
+import viewTemplate from './views/viewTemplate';
 
 $(document).ready(() => {
-    Store.getInstance();
+    const application = new State();
+    console.log(application);
 
-    $('.js-photo').each(element => {
-        new PhotoView($(element));
-    })
+    //     $('.js-photo').each(element => {
+    //         new PhotoView($(element));
+    //     })
 });
+
+

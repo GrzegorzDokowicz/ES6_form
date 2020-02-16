@@ -1,27 +1,22 @@
-let storeInstance = null;
-
 class Store {
     constructor() {
-        this.callbacks = [];
+        this.observers = []
     }
 
-    subscribe(callback) {
-        this.callbacks = [...this.callbacks, callback];
+    registerObserver(observer) {
+        this.observers.push(observer)
     }
 
-    set(data) {
-        for (let callback of this.callbacks) {
-            callback(data);
+    unregisterObserver(observer) {
+        this.observers = this.observers.filter(obs => obs !== observer);
+    }
+
+    notifyObservers(data) {
+        if (this.observers.length > 0) {
+            this.observers.forEach(observer => observer.notify(data));
         }
     }
 
-    static getInstance() {
-        if (!storeInstance) {
-            storeInstance = new this();
-        }
-
-        return storeInstance;
-    }
 }
 
 export default Store;

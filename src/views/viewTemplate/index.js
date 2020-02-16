@@ -6,12 +6,6 @@ class ViewTemplate extends Observer {
         this.element = element
         this.data = state.get()
     }
-
-    render() { }
-
-    notify() {
-        this.render()
-    }
 }
 
 export default ViewTemplate;

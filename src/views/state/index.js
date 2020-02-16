@@ -3,7 +3,7 @@ import Store from '../../core/store'
 class State extends Store {
     constructor() {
         super();
-        this.state = {};
+        this.state = [];
     }
 
     update(data = {}) {

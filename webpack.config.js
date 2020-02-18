@@ -15,8 +15,8 @@ module.exports = {
           // Translates CSS into CommonJS
           'css-loader',
           // Compiles Sass to CSS
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
       {
         test: /\.m?js$/,
@@ -24,16 +24,16 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
-    ]
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+    ],
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
   },
   devServer: { contentBase: './dist' },
-  plugins: [new htmlWebpackPlugin({ template: './src/index.html' })]
+  plugins: [new htmlWebpackPlugin({ template: './src/index.html' })],
 };

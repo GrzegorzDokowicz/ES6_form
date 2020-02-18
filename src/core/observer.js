@@ -1,10 +1,10 @@
 class Observer {
-    constructor(state) {
-        state.registerObserver(this)
-    }
+  constructor(state) {
+    state.registerObserver(this);
+  }
 
-    notify() {
-    }
+  notify() {
+  }
 }
 
-export default Observer
+export default Observer;

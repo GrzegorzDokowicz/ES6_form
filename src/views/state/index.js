@@ -1,13 +1,13 @@
 import Subject from '../../core/subject';
 
 class State extends Subject {
-  constructor() {
+  constructor(data = {}) {
     super();
-    this.state = {};
+    this.state = data;
   }
 
-  update(data = {}) {
-    this.state = Object.assign(this.state, data);
+  update(callback) {
+    this.state = callback(this.state);
     this.notifyObservers(this.state);
   }
 

@@ -4,25 +4,20 @@ import ViewTemplate from '../viewTemplate';
 class List extends ViewTemplate {
   constructor(state, element) {
     super(state, element);
-    this.notify();
   }
 
   createComponent() {
-    const compiled = template('<ul class="<%- className %>"><% _.forEach(users, function(user) { %><li><%- user.name %></li><% }); %></ul>');
+    console.log("From create", this.storeData);
+    const compiled = template('<ul class="<%- className %>"><% _.forEach(users, function(user) { %><li><%- console.log(user.name) %></li><% }); %></ul>');
 
-    const component = compiled({
+    return compiled({
       className: 'userList',
-      users: this.data,
+      users: this.storeData.photos,
     });
-    return component;
   }
 
   render() {
     document.querySelector(this.element).innerHTML = this.createComponent();
-  }
-
-  notify() {
-    this.render();
   }
 }
 export default List;

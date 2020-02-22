@@ -3,8 +3,7 @@ class Observer {
     state.registerObserver(this);
   }
 
-  notify() {
-  }
+  notify() {}
 }
 
 export default Observer;

@@ -3,11 +3,11 @@ import $ from 'jquery';
 import State from './views/state';
 import List from './views/list';
 
-$(document).ready(() => {
+document.addEventListener("DOMContentLoaded", function () {
     const initialStateData = {
         photos: [{name: 'John', lastname: 'Doe'}]
     };
-    const application = new State(initialStateData); // State na singletona !
+    const application = new State(initialStateData);
 
     new List(application, '.js-photo-list');
 
@@ -20,5 +20,6 @@ $(document).ready(() => {
             }
         ]
     })), 3000);
-});
+})
+
 

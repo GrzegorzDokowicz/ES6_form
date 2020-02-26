@@ -2,23 +2,17 @@
 import $ from 'jquery';
 import State from './views/state';
 import List from './views/list';
+import Requests from "./core/requests";
 
-$(document).ready(() => {
+document.addEventListener("DOMContentLoaded",  () => {
     const initialStateData = {
-        photos: [{name: 'John', lastname: 'Doe'}]
+        photos: []
     };
-    const application = new State(initialStateData); // State na singletona !
+    const application = new State(initialStateData);
 
-    new List(application, '.js-photo-list');
+    new Requests().get('http://www.mocky.io/v2/5e513b0e3100008500415951').then(data => data.forEach(element => application.state.photos.push(element)));
+    setTimeout(()=> new List(application, '.js-photo-list'), 3000)
 
-    setTimeout(() => application.update((lastState) => ({
-        ...lastState,
-        photos: [
-            ...lastState.photos,
-            {
-                name: 'Marek',
-            }
-        ]
-    })), 3000);
-});
+})
+
 

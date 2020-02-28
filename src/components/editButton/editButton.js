@@ -6,4 +6,4 @@ class editButton extends Button {
     }
 }
 
-export default Button;
+export default editButton;

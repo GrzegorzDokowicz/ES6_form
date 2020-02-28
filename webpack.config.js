@@ -4,7 +4,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   devtool: 'none',
-  entry: ['./src/index.js'],
+  entry: ['babel-polyfill', './src/index.js'],
   module: {
     rules: [
       {

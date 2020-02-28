@@ -9,29 +9,33 @@ class Button {
         this.render();
     }
 
-    attachClickEvent(callback) {
+    attachClickEvent(callback) { // musi byc przekazany this.callback ! inaczej callback bedzie undefined
         if (this.callback && typeof this.callback === "function") {
-            const element = document.querySelector(`.${this.className}`);
+            let element = null;
+            if (this.modifier) {
+                element = document.querySelector(`.${this.className}--${this.modifier}`);
+            } else {
+                element = document.querySelector(`.${this.className}`);
+            }
             element.addEventListener("click", callback);
         }
     }
 
-    prepareComponent() {
-        let component = "";
+    prepareNode() {
+        let node = document.createElement('button');
+
         if (this.modifier) {
-            component = `<button class="${this.className}--${this.modifier}">${
-                this.buttonText
-            }</button>`;
+            node.classList.add(`${this.className}`,`${this.className}--${this.modifier}`);
         } else {
-            component = `<button class="${this.className}">${
-                this.buttonText
-            }</button>`;
+            node.classList.add(`${this.className}`);
         }
-        return component;
+        node.textContent = this.buttonText;
+
+        return node;
     }
 
     render() {
-        document.querySelector(this.element).innerHTML = this.prepareComponent();
+        document.querySelector(this.element).appendChild(this.prepareNode())
         this.attachClickEvent(this.callback);
     }
 }

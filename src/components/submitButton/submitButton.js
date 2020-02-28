@@ -6,4 +6,4 @@ class submitButton extends Button {
     }
 }
 
-export default Button;
+export default submitButton;

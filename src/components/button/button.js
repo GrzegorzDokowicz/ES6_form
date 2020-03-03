@@ -6,7 +6,8 @@ class Button {
         this.buttonText = buttonText;
         this.modifier = modifier;
         this.elements = {
-            button: element.querySelectorAll(`.${this.className}${this.modifier ? `--${this.modifier}`: ''}`)
+            button:
+                element.querySelectorAll(`.${this.className}${this.modifier ? `--${this.modifier}`: ''}`)
         };
 
         this.render();

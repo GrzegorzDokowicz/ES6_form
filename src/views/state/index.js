@@ -1,14 +1,19 @@
 import Subject from '../../core/subject';
 
-let instance = null;
-
+let instance = {};
 
 class State extends Subject {
+    static getInstance(name, initialData = {}) {
+        if (!instance[name]) {
+            instance[name] = new State(initialData);
+        }
+
+        return instance[name];
+    }
+
     constructor(data = {}) {
         super();
-        if (!!instance) return instance;
-        this.state = data
-        instance = this
+        this.state = data;
     }
 
     update(callback) {

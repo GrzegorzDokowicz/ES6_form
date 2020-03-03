@@ -8,6 +8,9 @@
         <th>Photo</th>
         <th>Options</th>
     </tr>
+    <div data-component="PrimaryButton" data-class-name="test">
+        Button
+    </div>
     <tbody class="<%- tableBodyClassName %>">
     <% _.forEach(users, function (user) { %>
         <tr>
@@ -15,9 +18,13 @@
             <td><%-user.first_name %></td>
             <td><%-user.last_name %></td>
             <td><%-user.email %></td>
-            <td><img src="<%- user.URL %>" alt="User Photo"></td>
-            <td class="options-field"></td>
+            <td>
+                <img src="<%- user.URL %>" alt="User Photo">
+            </td>
+            <td class="options-field">
+
+            </td>
         </tr>
     <% }); %>
     </tbody>
-</table>`
+</table>

@@ -2,8 +2,8 @@ import ViewTemplate from '../viewTemplate';
 import template from './view.tmpl';
 
 class List extends ViewTemplate {
-    constructor(state, element) {
-        super(state, element);
+    constructor(element) {
+        super(element);
     }
 
     createComponent() {

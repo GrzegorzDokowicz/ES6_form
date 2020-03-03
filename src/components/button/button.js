@@ -5,34 +5,47 @@ class Button {
         this.className = className;
         this.buttonText = buttonText;
         this.modifier = modifier;
+        this.elements = {
+            button:
+                element.querySelectorAll(`.${this.className}${this.modifier ? `--${this.modifier}`: ''}`)
+        };
 
         this.render();
     }
 
-    attachClickEvent(callback) {
-        if (this.callback && typeof this.callback === "function") {
-            const element = document.querySelector(`.${this.className}`);
-            element.addEventListener("click", callback);
+    attachClickEvent() {
+        if (this.callback && typeof this.callback === 'function') {
+            this.elements.button.forEach(el =>{
+                el.addEventListener('click', this.callback);
+            })
         }
     }
 
-    prepareComponent() {
-        let component = "";
+    prepareNode() {
+        let node = document.createElement('button');
+
         if (this.modifier) {
-            component = `<button class="${this.className}--${this.modifier}">${
-                this.buttonText
-            }</button>`;
+            node.classList.add(`${this.className}`, `${this.className}--${this.modifier}`);
         } else {
-            component = `<button class="${this.className}">${
-                this.buttonText
-            }</button>`;
+            node.classList.add(`${this.className}`);
         }
-        return component;
+        if (this.buttonText) {
+            node.textContent = this.buttonText;
+        }
+
+        return node;
     }
 
     render() {
-        document.querySelector(this.element).innerHTML = this.prepareComponent();
-        this.attachClickEvent(this.callback);
+        const node = this.prepareNode();
+
+        if (this.element.childNodes[0]) {
+            this.element.replaceChild(node, this.element.childNodes[0]);
+        } else {
+            this.element.textContent = '';
+            this.element.appendChild(node);
+        }
+        this.attachClickEvent();
     }
 }
 

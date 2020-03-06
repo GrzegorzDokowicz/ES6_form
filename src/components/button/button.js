@@ -1,43 +1,42 @@
 import template from "./view.tmpl";
-import ViewTemplate from '../../views/viewTemplate';
+import Component from '../component';
 
-class Button extends ViewTemplate {
-    constructor(element, callback, className, buttonText, modifier = null) {
-        super(element);
-        this.element = element;
-        this.callback = callback;
-        this.className = className;
-        this.buttonText = buttonText;
-        this.modifier = modifier;
+class Button extends Component {
+    constructor(element, props) {
+        super(element, template, props);
 
         this.updateElements();
         this.render();
     }
 
-    updateElements() {
-        this.elements = {
-            button:
-                this.element.querySelectorAll(`.${this.className}${this.modifier ? `--${this.modifier}`: ''}`)
+    getTemplateData() {
+        return {
+            modifier: this.properties.modifier,
+            className: this.properties.className,
+            title: this.properties.buttonText
         };
     }
 
+    updateElements() {
+        return {
+            button: this.element.querySelectorAll(`[data-js-reference="innerButton"]`)
+        };
+    }
+
+    attachEvents() {
+        this.attachClickEvent();
+    }
+
     attachClickEvent() {
-        if (this.callback && typeof this.callback === 'function') {
-            this.elements.button.forEach(el => {
-                el.addEventListener('click', this.callback);
-            })
+        const {callback} = this.properties;
+
+        if (callback && typeof callback === 'function') {
+            this.elements.button.forEach(el => el.addEventListener('click', callback));
         }
     }
 
-    render() {
-        this.element.innerHTML = '';
-        this.element.appendChild(this.createNodeFromTemplate(template({
-            modifier: this.modifier,
-            className: this.className,
-            title: this.buttonText
-        })));
-
-        this.updateElements();
+    setClickCallback(callback) {
+        this.properties.callback = callback;
         this.attachClickEvent();
     }
 }

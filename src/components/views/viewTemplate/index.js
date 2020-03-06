@@ -1,4 +1,4 @@
-import Observer from '../../core/observer';
+import Observer from '../../../core/observer';
 import State from '../state';
 
 class ViewTemplate extends Observer {

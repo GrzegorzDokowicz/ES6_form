@@ -1,4 +1,4 @@
-import Subject from '../../core/subject';
+import Subject from '../../../core/subject';
 
 let instance = null;
 

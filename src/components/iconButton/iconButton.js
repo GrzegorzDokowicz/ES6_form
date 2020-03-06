@@ -1,8 +1,8 @@
 import Button from '../button/button';
 
 class IconButton extends Button {
-    constructor(element, callback, iconHTML, modifier = null) {
-        super(element, callback, 'icon-button', iconHTML, modifier)
+    constructor(element, {callback, className, children}) {
+        super(element, {callback, className, buttonText: children , modifier: 'icon'});
     }
 
 }

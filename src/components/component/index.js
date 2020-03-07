@@ -18,10 +18,17 @@ class Component extends Observer {
         this.notify();
     }
 
-    updateElements() {}
-    getTemplateData() {}
-    attachEvents() {}
-    getSubcomponents() {}
+    updateElements() {
+    }
+
+    getTemplateData() {
+    }
+
+    attachEvents() {
+    }
+
+    getSubcomponents() {
+    }
 
     notify() {
         this.state.get();
@@ -41,7 +48,7 @@ class Component extends Observer {
         const div = document.createElement('div');
         div.innerHTML = template.trim();
 
-        // Change this to div.childNodes to support multiple top-level nodes
+// Change this to div.childNodes to support multiple top-level nodes
         return div.firstChild;
     }
 }
